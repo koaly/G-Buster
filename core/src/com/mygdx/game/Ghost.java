@@ -9,16 +9,19 @@ public class Ghost {
 	private int life;
 	private Texture ghostImg;
 	private Rectangle body;
+	private int point;
 	
 	public Ghost(int x, int y, int imgWidth, int imgHeight) {
 		ghostImg = new Texture("ghost1.png");
 		position = new Vector2(x, y);
 		this.life = 1;
+		this.point = 1;
 		this.body = new Rectangle(x, GBusterGame.HEIGHT - (y + imgHeight), imgWidth, imgHeight);
 	}
 	
 	public void hit() {
 		this.life--;
+		World.increaseScore(point);
 	}
 	
 	public boolean isAilve() {
