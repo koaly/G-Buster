@@ -15,6 +15,8 @@ public class GameScreen extends ScreenAdapter {
 	
 	private Vector2 onClick;
 	
+	WorldRenderer worldRenderer;
+	
 	World world;
 	
 	public GameScreen(GBusterGame gBusterGame) {
@@ -22,6 +24,7 @@ public class GameScreen extends ScreenAdapter {
 		onClick = new Vector2();
 		
 		world = new World(gBusterGame);
+		worldRenderer = new WorldRenderer(gBusterGame, world);
 	}
 	
 	private void shoot() {
@@ -42,18 +45,11 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
     	update(delta);
+    	
     	Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        SpriteBatch batch = gBusterGame.batch;
-        batch.begin();
-        if (world.getGhost().isAilve()) {
-        	Vector2 pos = world.getGhost().getPosition();
-        	Texture img = world.getGhost().getGhostImg();
-        	batch.draw(img, pos.x, pos.y);
-        }
-        //System.out.println(onClick.x + " " + onClick.y);
-        batch.end();
-
+        
+        worldRenderer.render(delta);
     }
 
 }
