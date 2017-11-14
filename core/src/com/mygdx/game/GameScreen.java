@@ -15,6 +15,10 @@ public class GameScreen extends ScreenAdapter {
 	
 	private Vector2 onClick;
 	
+	private double timer;
+	
+	private final double gap = 1.5;
+	
 	WorldRenderer worldRenderer;
 	
 	World world;
@@ -22,6 +26,8 @@ public class GameScreen extends ScreenAdapter {
 	public GameScreen(GBusterGame gBusterGame) {
 		this.gBusterGame = gBusterGame;
 		onClick = new Vector2();
+		
+		timer = 0;
 		
 		world = new World(gBusterGame);
 		worldRenderer = new WorldRenderer(gBusterGame, world);
@@ -38,8 +44,18 @@ public class GameScreen extends ScreenAdapter {
 		}
 	}
 	
+	private void attack() {
+		if (timer > gap) {
+			timer = 0;
+			world.decreaseHealth(world.getGhost().getDamage());
+		}
+	}
+	
 	private void update(float delta) {
+		timer += delta;
+		System.out.println(timer + " " + delta);
 		shoot();
+		attack();
 	}
 	
     @Override

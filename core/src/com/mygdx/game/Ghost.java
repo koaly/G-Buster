@@ -10,12 +10,14 @@ public class Ghost {
 	private Texture ghostImg;
 	private Rectangle body;
 	private int point;
+	private int damage;
 	
 	public Ghost(int x, int y, int imgWidth, int imgHeight) {
 		ghostImg = new Texture("ghost1.png");
 		position = new Vector2(x, y);
 		this.life = 1;
 		this.point = 1;
+		this.damage = 1;
 		this.body = new Rectangle(x, GBusterGame.HEIGHT - (y + imgHeight), imgWidth, imgHeight);
 	}
 	
@@ -34,6 +36,10 @@ public class Ghost {
 	
 	public Rectangle getBody() {
 		return body;
+	}
+	
+	public int getDamage() {
+		return damage;
 	}
 	
 	public Texture getGhostImg() {

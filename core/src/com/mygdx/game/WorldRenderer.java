@@ -32,6 +32,7 @@ public class WorldRenderer {
         	batch.draw(img, pos.x, pos.y);
         }
         font.draw(batch, "" + world.getScore(), 50, GBusterGame.HEIGHT - 50);
+        font.draw(batch, "" + world.getHealth(), GBusterGame.WIDTH - 50, GBusterGame.HEIGHT - 50);
         //System.out.println(onClick.x + " " + onClick.y);
         batch.end();
 	}
