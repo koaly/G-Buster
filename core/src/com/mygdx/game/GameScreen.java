@@ -15,11 +15,13 @@ public class GameScreen extends ScreenAdapter {
 	
 	private Vector2 onClick;
 	
+	World world;
+	
 	public GameScreen(GBusterGame gBusterGame) {
 		this.gBusterGame = gBusterGame;
-		
-		ghost = new Ghost(100, 100, 150, 192);
 		onClick = new Vector2();
+		
+		world = new World(gBusterGame);
 	}
 	
 	private void shoot() {
@@ -27,8 +29,8 @@ public class GameScreen extends ScreenAdapter {
 			onClick.x = Gdx.input.getX();
 			onClick.y = Gdx.input.getY();
 
-			if (ghost.getBody().contains(onClick)) {
-				ghost.hit();
+			if (world.getGhost().getBody().contains(onClick)) {
+				world.getGhost().hit();
 			}
 		}
 	}
@@ -44,9 +46,9 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         SpriteBatch batch = gBusterGame.batch;
         batch.begin();
-        if (ghost.isAilve()) {
-        	Vector2 pos = ghost.getPosition();
-        	Texture img = ghost.getGhostImg();
+        if (world.getGhost().isAilve()) {
+        	Vector2 pos = world.getGhost().getPosition();
+        	Texture img = world.getGhost().getGhostImg();
         	batch.draw(img, pos.x, pos.y);
         }
         //System.out.println(onClick.x + " " + onClick.y);
