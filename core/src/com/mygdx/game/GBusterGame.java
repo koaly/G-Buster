@@ -10,6 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class GBusterGame extends Game {
 	public SpriteBatch batch;
 	
+	public static final int HEIGHT = 720;
+    public static final int WIDTH = 1280;
+	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
