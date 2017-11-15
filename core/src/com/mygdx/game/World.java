@@ -66,6 +66,9 @@ public class World {
 			if (ghost.isAttack(delta)) {
 				decreaseHealth(ghost.getDamage());
 			}
+			if (health <= 0) {
+				gBusterGame.setScreen(new RetryScreen(gBusterGame));
+			}
 		}
 	}
 	

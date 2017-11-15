@@ -12,9 +12,13 @@ public class WorldRenderer {
 	
 	SpriteBatch batch;
 	
+	private Texture gameoverImg;
+	
 	private BitmapFont font;
 
 	public WorldRenderer(GBusterGame gBusterGame, World world) {
+		gameoverImg = new Texture("gameover.png");
+		
 		this.gBusterGame = gBusterGame; 
 		
 		batch = gBusterGame.batch;
@@ -37,6 +41,13 @@ public class WorldRenderer {
         font.draw(batch, "" + world.getScore(), 50, GBusterGame.HEIGHT - 50);
         font.draw(batch, "" + world.getHealth(), GBusterGame.WIDTH - 50, GBusterGame.HEIGHT - 50);
         //System.out.println(onClick.x + " " + onClick.y);
+        batch.end();
+	}
+	
+	public void renderGameover(float delta) {
+		batch.begin();
+		Texture img = gameoverImg;
+        batch.draw(img, 0, 0);
         batch.end();
 	}
 }
