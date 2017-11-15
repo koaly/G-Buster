@@ -26,11 +26,14 @@ public class WorldRenderer {
 	
 	public void render(float delta) {
         batch.begin();
-        if (world.getGhost().isAilve()) {
-        	Vector2 pos = world.getGhost().getPosition();
-        	Texture img = world.getGhost().getGhostImg();
-        	batch.draw(img, pos.x, pos.y);
+        
+        for (Ghost ghost: world.ghostPack) {
+            Vector2 pos = ghost.getPosition();
+           
+            Texture img = ghost.getGhostImg();
+            batch.draw(img, pos.x, pos.y);
         }
+    
         font.draw(batch, "" + world.getScore(), 50, GBusterGame.HEIGHT - 50);
         font.draw(batch, "" + world.getHealth(), GBusterGame.WIDTH - 50, GBusterGame.HEIGHT - 50);
         //System.out.println(onClick.x + " " + onClick.y);
