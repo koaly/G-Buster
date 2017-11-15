@@ -17,7 +17,6 @@ public class Ghost {
 	
 	public Ghost(int x, int y, int imgWidth, int imgHeight) {
 		ghostImg = new Texture("ghost1.png");
-		ghostAttack = new Texture("ghost1_attack.png");
 		position = new Vector2(x, y);
 		this.life = 1;
 		this.point = 1;
@@ -25,7 +24,7 @@ public class Ghost {
 		this.body = new Rectangle(x, GBusterGame.HEIGHT - (y + imgHeight), imgWidth, imgHeight);
 		
 		this.damageTimer = 0;
-		this.damageGap = 1.5;
+		this.damageGap = 1;
 	}
 	
 	public void hit() {

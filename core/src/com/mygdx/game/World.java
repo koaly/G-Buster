@@ -14,8 +14,12 @@ public class World {
 	
 	private Vector2 onClick;
 	
+	private int clock;
+	private int timer;
+	private final int gap = 1;
+	
 	private double spawnTimer;
-	private final double spawnGap = 1;
+	private final double spawnGap = 0.5;
 	
 	private static int score;
 	private static int health;
@@ -31,6 +35,8 @@ public class World {
 		health = 10;
 		
 		onClick = new Vector2();
+		
+		clock = timer = 0;
 		
 		spawnTimer = 0;
 	}
@@ -79,8 +85,17 @@ public class World {
 		ghostPack.removeAll(removeGhost);
 	}
 	
+	private void updateClock() {
+		if (timer > gap) {
+			timer = 0;
+			clock++;
+		}
+	}
+	
 	void update(float delta) {
 		spawnTimer += delta;
+		timer += delta;
+		updateClock();
 		
 		attack(delta);
 		spawn();
