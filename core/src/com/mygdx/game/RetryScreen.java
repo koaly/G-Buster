@@ -27,8 +27,8 @@ private GBusterGame gBusterGame;
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.input.isKeyPressed(Keys.ENTER)){
 	   
-	    	gBusterGame.setScreen(new GameScreen(gBusterGame));	
+	    	gBusterGame.setScreen(new MenuScreen(gBusterGame));	
         }
-        worldRenderer.renderGameover(delta);
+        worldRenderer.renderGameover();
     }
 }

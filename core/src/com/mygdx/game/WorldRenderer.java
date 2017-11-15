@@ -12,12 +12,16 @@ public class WorldRenderer {
 	
 	SpriteBatch batch;
 	
+	private Texture background;
 	private Texture gameoverImg;
+	private Texture menu;
 	
 	private BitmapFont font;
 
 	public WorldRenderer(GBusterGame gBusterGame, World world) {
+		background = new Texture("bg.jpg");
 		gameoverImg = new Texture("gameover.png");
+		menu = new Texture("menu.png");
 		
 		this.gBusterGame = gBusterGame; 
 		
@@ -31,10 +35,12 @@ public class WorldRenderer {
 	public void render(float delta) {
         batch.begin();
         
+        Texture img = background;
+        batch.draw(img, 0, 0);
         for (Ghost ghost: world.ghostPack) {
             Vector2 pos = ghost.getPosition();
            
-            Texture img = ghost.getGhostImg();
+            img = ghost.getGhostImg();
             batch.draw(img, pos.x, pos.y);
         }
     
@@ -44,7 +50,14 @@ public class WorldRenderer {
         batch.end();
 	}
 	
-	public void renderGameover(float delta) {
+	public void renderMenu() {
+		batch.begin();
+		Texture img = menu;
+        batch.draw(img, 0, 0);
+        batch.end();
+	}
+	
+	public void renderGameover() {
 		batch.begin();
 		Texture img = gameoverImg;
         batch.draw(img, 0, 0);
