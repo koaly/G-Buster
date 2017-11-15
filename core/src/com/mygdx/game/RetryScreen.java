@@ -14,8 +14,11 @@ private GBusterGame gBusterGame;
 	
 	World world;
 	
-	public RetryScreen(GBusterGame gBusterGame) {
+	private int mode;
+	
+	public RetryScreen(GBusterGame gBusterGame, int mode) {
 		this.gBusterGame = gBusterGame;
+		this.mode = mode;
 		
 		world = new World(gBusterGame);
 		worldRenderer = new WorldRenderer(gBusterGame, world);
@@ -26,9 +29,13 @@ private GBusterGame gBusterGame;
     	Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         if(Gdx.input.isKeyPressed(Keys.ENTER)){
-	   
 	    	gBusterGame.setScreen(new MenuScreen(gBusterGame));	
         }
-        worldRenderer.renderGameover();
+        if (mode == 1) {
+        	worldRenderer.renderGameover();
+        }
+        else {
+        	worldRenderer.renderArrested();
+        }
     }
 }

@@ -51,6 +51,9 @@ public class World {
 			
 			for (Ghost ghost: ghostPack) {
 				if (ghost.getBody().contains(onClick)) {
+					if(ghost.getDamage() == -1) {
+						gBusterGame.setScreen(new RetryScreen(gBusterGame,2));
+					}
 					ghost.hit();
 				}
 			}
@@ -66,14 +69,19 @@ public class World {
 	
 	private void gameOverCheck() {
 		if (health <= 0) {
-			gBusterGame.setScreen(new RetryScreen(gBusterGame));
+			gBusterGame.setScreen(new RetryScreen(gBusterGame,1));
 		}
 	}
 	
 	private void attack(float delta) {
 		for (Ghost ghost: ghostPack) {
 			if (ghost.isAttack(delta)) {
-				decreaseHealth(ghost.getDamage());
+				if (ghost.getDamage() < 0) {
+					ghost.hit();
+				}
+				else {
+					decreaseHealth(ghost.getDamage());
+				}
 			}
 			gameOverCheck();
 		}
@@ -88,13 +96,16 @@ public class World {
 	private void spawn() {
 		if (spawnTimer > spawnGap) {
 			spawnTimer = 0;
-			ghostPack.add(new RedGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128));
+			ghostPack.add(new GreenGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128));
+			ghostPack.add(new Ghost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128));
+			
 		}
 	}
 	
 	private void updateGhost() {
 		ArrayList<Ghost> removeGhost = new ArrayList<Ghost>();
 		for(Ghost ghost: ghostPack){
+			
 			if(!ghost.isAilve()) {
 				increaseScore(ghost.getPoint());
 				removeGhost.add(ghost);
