@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input.Keys;
@@ -19,7 +21,7 @@ public class MenuScreen extends ScreenAdapter {
 	
 	World world;
 	
-	public MenuScreen(GBusterGame gBusterGame) {
+	public MenuScreen(GBusterGame gBusterGame) throws IOException {
 		this.gBusterGame = gBusterGame;
 		
 		world = new World(gBusterGame);
@@ -37,14 +39,24 @@ public class MenuScreen extends ScreenAdapter {
 			onClick.x = Gdx.input.getX();
 			onClick.y = Gdx.input.getY();
 			
-			gBusterGame.setScreen(new GameScreen(gBusterGame));	
+			try {
+				gBusterGame.setScreen(new GameScreen(gBusterGame));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 				
 			
 			
 		}
         if(Gdx.input.isKeyPressed(Keys.ENTER)){
 	   
-	    	gBusterGame.setScreen(new GameScreen(gBusterGame));	
+	    	try {
+				gBusterGame.setScreen(new GameScreen(gBusterGame));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
         }
         worldRenderer.renderMenu();
     }

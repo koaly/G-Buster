@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
@@ -9,6 +11,8 @@ import com.badlogic.gdx.utils.Array;
 public class World {
 	
 	ArrayList<Ghost> ghostPack;
+	
+	FileWriter out = null;
 	
 	private final int GHOST = 0;
 	private final int REDGHOST = 1;
@@ -31,8 +35,9 @@ public class World {
 	private static int score;
 	private static int health;
 	private static boolean isBossDead;
+	private boolean isEndGame;
 	
-	World(GBusterGame gBusterGame) {
+	World(GBusterGame gBusterGame) throws IOException {
 		this.gBusterGame = gBusterGame;
 		
 		ghostPack = new ArrayList<Ghost>();
@@ -51,16 +56,21 @@ public class World {
 		gapCounter = 0;
 		
 		isBossDead = true;
+		isEndGame = true;
+		out = new FileWriter("score.txt");
 	}
 	
-	private void shoot() {
+	private void shoot() throws IOException {
 		if (Gdx.input.justTouched()) {
 			onClick.x = Gdx.input.getX();
 			onClick.y = Gdx.input.getY();
 			
 			for (Ghost ghost: ghostPack) {
 				if (ghost.getBody().contains(onClick)) {
-					if(ghost.getDamage() == -1) {
+					if(ghost.getDamage() == -1 && isEndGame) {
+						isEndGame = false;
+						out.write(Integer.toString(score));
+						out.close();
 						gBusterGame.setScreen(new RetryScreen(gBusterGame,2,this));
 					}
 					ghost.hit();
@@ -76,13 +86,16 @@ public class World {
 		   return (int)(Math.random() * range) + min;
 	}
 	
-	private void gameOverCheck() {
-		if (health <= 0) {
+	private void gameOverCheck() throws IOException {
+		if (health <= 0 && isEndGame) {
+			isEndGame = false;
+			out.write(Integer.toString(score));
+			out.close();
 			gBusterGame.setScreen(new RetryScreen(gBusterGame,1,this));
 		}
 	}
 	
-	private void ghostAttack(float delta) {
+	private void ghostAttack(float delta) throws IOException {
 		ArrayList<Ghost> newGhost = new ArrayList<Ghost>();
 		for (Ghost ghost: ghostPack) {
 			if (ghost.isAttack(delta)) {
@@ -178,7 +191,7 @@ public class World {
 		}
 	}
 	
-	void update(float delta) {
+	void update(float delta) throws IOException {
 		timer += delta;
 		
 		ghostAttack(delta);
