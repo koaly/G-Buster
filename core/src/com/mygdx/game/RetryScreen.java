@@ -39,10 +39,20 @@ private GBusterGame gBusterGame;
 			}	
         }
         if (mode == 1) {
-        	worldRenderer.renderGameover();
+        	try {
+				worldRenderer.renderGameover();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         else {
-        	worldRenderer.renderArrested();
+        	try {
+				worldRenderer.renderArrested();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
     

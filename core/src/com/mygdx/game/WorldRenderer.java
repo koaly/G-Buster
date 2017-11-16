@@ -1,5 +1,9 @@
 package com.mygdx.game;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,6 +15,8 @@ public class WorldRenderer {
 	private World world;
 	
 	SpriteBatch batch;
+	FileReader in = null;
+
 	
 	private Texture background;
 	private Texture gameoverImg;
@@ -59,17 +65,33 @@ public class WorldRenderer {
         batch.end();
 	}
 	
-	public void renderGameover() {
+	public void renderGameover() throws IOException {
+        in = new FileReader("score.txt");
+        String s = "";
+        int c;
+        while ((c = in.read()) != -1) {
+           s += (char) c;
+        }
+        
 		batch.begin();
 		Texture img = gameoverImg;
         batch.draw(img, 0, 0);
+        font.draw(batch, "" + s, GBusterGame.WIDTH - 400, 130);
         batch.end();
 	}
 	
-	public void renderArrested() {
+	public void renderArrested() throws IOException {
+		in = new FileReader("score.txt");
+        String s = "";
+        int c;
+        while ((c = in.read()) != -1) {
+            s += (char) c;
+        }
+		
 		batch.begin();
 		Texture img = arrestedImg;
         batch.draw(img, 0, 0);
+        font.draw(batch, "" + s, GBusterGame.WIDTH - 400, 130);
         batch.end();
 	}
 }
