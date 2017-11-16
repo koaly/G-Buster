@@ -17,11 +17,14 @@ public class GameScreen extends ScreenAdapter {
 	
 	World world;
 	
+	SoundFx sound;
+	
 	public GameScreen(GBusterGame gBusterGame) throws IOException {
 		this.gBusterGame = gBusterGame;
 		
 		world = new World(gBusterGame);
 		worldRenderer = new WorldRenderer(gBusterGame, world);
+		sound = new SoundFx();
 	}
 	
     @Override

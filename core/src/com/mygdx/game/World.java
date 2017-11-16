@@ -23,6 +23,7 @@ public class World {
 	private GBusterGame gBusterGame;
 	
 	private Vector2 onClick;
+	private SoundFx sound;
 	
 	private int clock;
 	private double timer;
@@ -39,6 +40,8 @@ public class World {
 	
 	World(GBusterGame gBusterGame) throws IOException {
 		this.gBusterGame = gBusterGame;
+		
+		sound = new SoundFx();
 		
 		ghostPack = new ArrayList<Ghost>();
 		
@@ -62,6 +65,7 @@ public class World {
 	
 	private void shoot() throws IOException {
 		if (Gdx.input.justTouched()) {
+			sound.playGunShot();
 			onClick.x = Gdx.input.getX();
 			onClick.y = Gdx.input.getY();
 			
@@ -103,6 +107,7 @@ public class World {
 					ghost.hit();
 				}
 				else {
+					sound.playBite();
 					if (ghost.getDamage() == -5) {
 						for (int i = 0; i < 5; i++) {
 							newGhost.add(new Ghost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
@@ -132,6 +137,7 @@ public class World {
 			ghostPack.add(new BlueGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
 			break;
 		case KID:
+			sound.playScream();
 			ghostPack.add(new Kid(random(100,GBusterGame.WIDTH - 100), random(195,GBusterGame.HEIGHT - 195), 100, 195, this));
 			break;
 		}

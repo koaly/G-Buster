@@ -16,6 +16,8 @@ private GBusterGame gBusterGame;
 	
 	World world;
 	
+	SoundFx sound;
+	
 	private int mode;
 	
 	public RetryScreen(GBusterGame gBusterGame, int mode, World world) {
@@ -24,6 +26,9 @@ private GBusterGame gBusterGame;
 		
 		this.world = world;
 		worldRenderer = new WorldRenderer(gBusterGame, world);
+		
+		sound = new SoundFx();
+		sound.playGameOver();
 	}
 	
     @Override
