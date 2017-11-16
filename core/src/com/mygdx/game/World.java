@@ -92,7 +92,7 @@ public class World {
 				else {
 					if (ghost.getDamage() == -5) {
 						for (int i = 0; i < 5; i++) {
-							ghostSpawner(GHOST);
+							newGhost.add(new Ghost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
 					
 						}
 					}

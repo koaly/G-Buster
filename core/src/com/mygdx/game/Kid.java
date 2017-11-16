@@ -16,7 +16,7 @@ public class Kid extends Ghost {
 		super.damage = -1;
 		
 		super.damageTimer = 0;
-		super.damageGap = 0.5;
+		super.damageGap = 1;
 	}
 
 }
