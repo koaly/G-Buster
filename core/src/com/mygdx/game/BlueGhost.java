@@ -4,19 +4,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class RedGhost extends Ghost {
+public class BlueGhost extends Ghost {
 	
-	public RedGhost(int x, int y, int imgWidth, int imgHeight, World world) {
+	public BlueGhost(int x, int y, int imgWidth, int imgHeight, World world) {
 		super(x, y, imgWidth, imgHeight, world);
 		
-		super.ghostImg = new Texture("redGhost.png");
+		super.ghostImg = new Texture("blueGhost.png");
 		
 		super.life = 2*world.getRound();
 		super.point = 2;
-		super.damage = 1;
+		super.damage = -5;
 		
 		super.damageTimer = 0;
-		super.damageGap = 1;
+		super.damageGap = 3;
 	}
 
 }

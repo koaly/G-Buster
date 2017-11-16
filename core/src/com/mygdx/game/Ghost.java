@@ -15,18 +15,20 @@ public class Ghost {
 	protected double damageTimer;
 	protected double damageGap; 
 	
-	public Ghost(int x, int y, int imgWidth, int imgHeight) {
+	public Ghost(int x, int y, int imgWidth, int imgHeight, World world) {
 		this.body = new Rectangle(x, GBusterGame.HEIGHT - (y + imgHeight), imgWidth, imgHeight);
 		position = new Vector2(x, y);
 		
 		this.ghostImg = new Texture("ghost.png");
 		
-		this.life = 1;
+		this.life = 1*world.getRound();
 		this.point = 1;
 		this.damage = 1;
 		
 		this.damageTimer = 0;
 		this.damageGap = 1;
+		
+		
 	}
 	
 	public void hit() {

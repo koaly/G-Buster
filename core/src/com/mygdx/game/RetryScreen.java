@@ -16,11 +16,11 @@ private GBusterGame gBusterGame;
 	
 	private int mode;
 	
-	public RetryScreen(GBusterGame gBusterGame, int mode) {
+	public RetryScreen(GBusterGame gBusterGame, int mode, World world) {
 		this.gBusterGame = gBusterGame;
 		this.mode = mode;
 		
-		world = new World(gBusterGame);
+		this.world = world;
 		worldRenderer = new WorldRenderer(gBusterGame, world);
 	}
 	

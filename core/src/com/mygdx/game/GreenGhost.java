@@ -6,12 +6,12 @@ import com.badlogic.gdx.math.Vector2;
 
 public class GreenGhost extends Ghost {
 	
-	public GreenGhost(int x, int y, int imgWidth, int imgHeight) {
-		super(x, y, imgWidth, imgHeight);
+	public GreenGhost(int x, int y, int imgWidth, int imgHeight, World world) {
+		super(x, y, imgWidth, imgHeight, world);
 		
 		super.ghostImg = new Texture("greenGhost.png");
 		
-		super.life = 5;
+		super.life = 5*world.getRound();
 		super.point = 5;
 		super.damage = 5;
 		
