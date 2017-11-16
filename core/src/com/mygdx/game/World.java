@@ -45,7 +45,7 @@ public class World {
 		clock = 0;
 		timer = 0;
 		gap = 1.5;
-		round = 2;
+		round = 1;
 		
 		roundCounter = 0;
 		gapCounter = 0;
