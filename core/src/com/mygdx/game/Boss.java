@@ -16,7 +16,7 @@ public class Boss extends Ghost {
 		super.damage = 10;
 		
 		super.damageTimer = 0;
-		super.damageGap = 15;
+		super.damageGap = 10;
 	}
 
 }

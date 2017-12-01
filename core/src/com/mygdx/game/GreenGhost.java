@@ -16,7 +16,7 @@ public class GreenGhost extends Ghost {
 		super.damage = 5;
 		
 		super.damageTimer = 0;
-		super.damageGap = 2;
+		super.damageGap = 3;
 	}
 
 }
