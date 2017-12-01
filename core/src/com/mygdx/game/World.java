@@ -46,7 +46,7 @@ public class World {
 		ghostPack = new ArrayList<Ghost>();
 		
 		score = 0;
-		health = 10;
+		health = 15;
 		
 		onClick = new Vector2();
 		
@@ -109,7 +109,7 @@ public class World {
 				else {
 					sound.playBite();
 					if (ghost.getDamage() == -5) {
-						for (int i = 0; i < 5; i++) {
+						for (int i = 0; i < 3; i++) {
 							newGhost.add(new Ghost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
 					
 						}
