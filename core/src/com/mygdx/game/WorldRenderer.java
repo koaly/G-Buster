@@ -52,7 +52,9 @@ public class WorldRenderer {
             img = ghost.getGhostImg();
             batch.draw(img, pos.x, pos.y);
             font.draw(batch, "" + ghost.getLife(), pos.x, pos.y);
-            font.draw(batch, "" + df2.format(ghost.getDamageTimer()), pos.x + 70, pos.y);
+            if (ghost.getDamage() != -2 && ghost.getDamage() != -1) {
+            	font.draw(batch, "" + df2.format(ghost.getDamageTimer()), pos.x + 70, pos.y);
+            }
         }
     
         font.draw(batch, "SCORE: " + world.getScore(), 50, GBusterGame.HEIGHT - 50);

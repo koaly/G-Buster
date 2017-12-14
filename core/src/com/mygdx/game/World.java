@@ -17,8 +17,9 @@ public class World {
 	private final int GHOST = 0;
 	private final int REDGHOST = 1;
 	private final int GREENGHOST = 2;
-	private final int BLUEGHOST = 3;
-	private final int KID = 4;
+	private final int YELLOWGHOST = 3;
+	private final int BLUEGHOST = 4;
+	private final int KID = 5;
 	
 	private GBusterGame gBusterGame;
 	
@@ -106,6 +107,9 @@ public class World {
 				if (ghost.getDamage() == -1) {
 					ghost.hit();
 				}
+				else if (ghost.getDamage() == -2) {
+					
+				}
 				else {
 					sound.playBite();
 					if (ghost.getDamage() == -5) {
@@ -133,6 +137,9 @@ public class World {
 		case GREENGHOST:
 			ghostPack.add(new GreenGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
 			break;
+		case YELLOWGHOST:
+			ghostPack.add(new YellowGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
+			break;
 		case BLUEGHOST:
 			ghostPack.add(new BlueGhost(random(100,GBusterGame.WIDTH - 100), random(128,GBusterGame.HEIGHT - 128), 100, 128, this));
 			break;
@@ -150,6 +157,9 @@ public class World {
 			if(!ghost.isAilve()) {
 				if (ghost.getDamage() == 10) {
 					nextRound();
+				}
+				else if (ghost.getDamage() == -2) {
+					health += 2;
 				}
 				increaseScore(ghost.getPoint());
 				removeGhost.add(ghost);
@@ -184,7 +194,12 @@ public class World {
 			}
 		}
 		else if (clock % 3 == 0) {
-			ghostSpawner(REDGHOST);
+			if (rand >= 1 && rand <= 8) {
+				ghostSpawner(REDGHOST);
+			}
+			else {
+				ghostSpawner(YELLOWGHOST);
+			}
 		}
 		else {
 			if (rand >= 1 && rand <= 8) {
