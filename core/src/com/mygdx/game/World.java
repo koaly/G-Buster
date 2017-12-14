@@ -237,7 +237,7 @@ public class World {
 	}
 	
 	public void spawnBoss() {
-		if (roundCounter > 150) {
+		if (roundCounter >= 150) {
 			roundCounter %= 150;
 			ghostPack.removeAll(ghostPack);
 			ghostPack.add(new Boss(0, 0, 1280, 720, this));
