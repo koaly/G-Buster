@@ -15,8 +15,8 @@ public class BlueGhost extends Ghost {
 		super.point = 2;
 		super.damage = -5;
 		
-		super.damageTimer = 0;
 		super.damageGap = 3;
+		super.damageTimer = this.damageGap;
 	}
 
 }

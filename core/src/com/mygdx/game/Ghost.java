@@ -25,9 +25,8 @@ public class Ghost {
 		this.point = 1;
 		this.damage = 1;
 		
-		this.damageTimer = 0;
 		this.damageGap = 1;
-		
+		this.damageTimer = this.damageGap;
 		
 	}
 	
@@ -47,6 +46,10 @@ public class Ghost {
 		return body;
 	}
 	
+	public int getLife() {
+		return life;
+	}
+	
 	public int getDamage() {
 		return damage;
 	}
@@ -56,12 +59,16 @@ public class Ghost {
 	}
 	
 	public boolean isAttack(float delta) {
-		damageTimer += delta;
-		if (damageTimer > damageGap) {
-			damageTimer = 0;
+		damageTimer -= delta;
+		if (damageTimer < 0) {
+			damageTimer = damageGap;
 			return true;
 		}
 		else return false;
+	}
+	
+	public double getDamageTimer() {
+		return damageTimer;
 	}
 	
 	public double getDamageGap() {
@@ -75,6 +82,5 @@ public class Ghost {
 	public Texture getGhostAttack() {
 		return ghostAttack;
 	}
-	
 	
 }

@@ -3,6 +3,7 @@ package com.mygdx.game;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,7 +18,7 @@ public class WorldRenderer {
 	SpriteBatch batch;
 	FileReader in = null;
 
-	
+	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	private Texture background;
 	private Texture gameoverImg;
 	private Texture arrestedImg;
@@ -50,10 +51,12 @@ public class WorldRenderer {
            
             img = ghost.getGhostImg();
             batch.draw(img, pos.x, pos.y);
+            font.draw(batch, "" + ghost.getLife(), pos.x, pos.y);
+            font.draw(batch, "" + df2.format(ghost.getDamageTimer()), pos.x + 70, pos.y);
         }
     
-        font.draw(batch, "" + world.getScore(), 50, GBusterGame.HEIGHT - 50);
-        font.draw(batch, "" + world.getHealth(), GBusterGame.WIDTH - 50, GBusterGame.HEIGHT - 50);
+        font.draw(batch, "SCORE: " + world.getScore(), 50, GBusterGame.HEIGHT - 50);
+        font.draw(batch, "LIFE: " + world.getHealth(), GBusterGame.WIDTH - 120, GBusterGame.HEIGHT - 50);
         //System.out.println(onClick.x + " " + onClick.y);
         batch.end();
 	}

@@ -15,8 +15,8 @@ public class RedGhost extends Ghost {
 		super.point = 2;
 		super.damage = 1;
 		
-		super.damageTimer = 0;
 		super.damageGap = 1;
+		super.damageTimer = this.damageGap;
 	}
 
 }
