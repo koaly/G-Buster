@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,6 +26,8 @@ public class WorldRenderer {
 	private Texture menu;
 	
 	private BitmapFont font;
+	private BitmapFont scoreFont;
+	private BitmapFont counterFont;
 
 	public WorldRenderer(GBusterGame gBusterGame, World world) {
 		background = new Texture("bg.jpg");
@@ -39,6 +42,8 @@ public class WorldRenderer {
 		this.world = world;
 		
 		font = new BitmapFont();
+		counterFont = new BitmapFont(Gdx.files.internal("font.fnt"));
+		scoreFont = new BitmapFont(Gdx.files.internal("scoreFont.fnt"));
 	}
 	
 	public void render(float delta) {
@@ -57,8 +62,8 @@ public class WorldRenderer {
             }
         }
     
-        font.draw(batch, "SCORE: " + world.getScore(), 50, GBusterGame.HEIGHT - 50);
-        font.draw(batch, "LIFE: " + world.getHealth(), GBusterGame.WIDTH - 120, GBusterGame.HEIGHT - 50);
+        counterFont.draw(batch, "SCORE: " + world.getScore(), 50, GBusterGame.HEIGHT);
+        counterFont.draw(batch, "LIFE: " + world.getHealth(), GBusterGame.WIDTH - 170, GBusterGame.HEIGHT);
         //System.out.println(onClick.x + " " + onClick.y);
         batch.end();
 	}
@@ -81,7 +86,7 @@ public class WorldRenderer {
 		batch.begin();
 		Texture img = gameoverImg;
         batch.draw(img, 0, 0);
-        font.draw(batch, "" + s, GBusterGame.WIDTH - 400, 130);
+        scoreFont.draw(batch, "" + s, GBusterGame.WIDTH - 410, 145);
         batch.end();
 	}
 	
@@ -96,7 +101,7 @@ public class WorldRenderer {
 		batch.begin();
 		Texture img = arrestedImg;
         batch.draw(img, 0, 0);
-        font.draw(batch, "" + s, GBusterGame.WIDTH - 400, 130);
+        scoreFont.draw(batch, "" + s, GBusterGame.WIDTH - 410, 145);
         batch.end();
 	}
 }
